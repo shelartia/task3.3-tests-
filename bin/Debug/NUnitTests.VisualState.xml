@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
+  <TopNode>[0-1039]NUnitTests.Controllers.StudentControllerTest.Delete_Get_Action_Returns_404_If_Branch_Not_Found</TopNode>
+  <SelectedNode>[0-1054]NUnitTests</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1000]D:\Books\Projects\TasksFromZhorik\Task3\Combo\NUnitTests\bin\Debug\NUnitTests.nunit" Expanded="true" />
+    <Node UniqueName="[0-1053]D:\Books\Projects\TasksFromZhorik\Task3\Combo\NUnitTests\bin\Debug\NUnitTests.dll" Expanded="true" />
+    <Node UniqueName="[0-1054]NUnitTests" Expanded="true" />
+    <Node UniqueName="[0-1055]NUnitTests.Controllers" Expanded="true" />
+    <Node UniqueName="[0-1001]NUnitTests.Controllers.GroupControllerTest" Expanded="true" />
+    <Node UniqueName="[0-1022]NUnitTests.Controllers.StudentControllerTest" Expanded="true" />
+    <Node UniqueName="[0-1056]NUnitTests.Repositories" Expanded="true" />
+    <Node UniqueName="[0-1043]NUnitTests.Repositories.IGroupsRepositoryTest" Expanded="true" />
+    <Node UniqueName="[0-1048]NUnitTests.Repositories.IStudentsRepositoryTest" Expanded="true" />
+  </Nodes>
+</VisualState>
