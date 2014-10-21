@@ -122,9 +122,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Repositories\GroupMongoRepositoryTest.cs" />
+    <Compile Include="Repositories\GroupMSRepositoryTest.cs" />
     <Compile Include="Repositories\IGroupsRepositoryTest.cs" />
     <Compile Include="Repositories\IStudentsRepositoryTest.cs" />
     <Compile Include="Repositories\StudentMongoRepositoryTest.cs" />
+    <Compile Include="Repositories\StudentMSRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -142,8 +144,12 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="Unity.Mvc4.README.txt" />
+    <Content Include="App_data\MSTestDatabase.mdf" />
+    <Content Include="App_data\MSTestDatabase_log.ldf">
+      <DependentUpon>MSTestDatabase.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

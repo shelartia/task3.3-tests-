@@ -1,44 +1,72 @@
 ﻿using Combo.Models;
+using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace NUnitTests.Repositories
 {
-    /*
+    
     [TestFixture]
     class StudentMongoRepositoryTest
     {
+        private MongoDatabase MongoDatabase;
+        private MongoCollection GroupsCollection;
+        private MongoCollection StudentsCollection;
+        private StudentMongoRepository studentRepository;
+        [SetUp]
+        public void SetUpTests()
+        {
+
+            // Get the Mongo Client
+            var mongoClient = new MongoClient("server=localhost");
+
+            // Get the Mongo Server from the Cliet Instance
+            var server = mongoClient.GetServer();
+
+            // Assign the database to mongoDatabase
+            MongoDatabase = server.GetDatabase("MyDBTest");
+
+            // get the Groups collection (table) and assign to GroupsCollection
+            GroupsCollection = MongoDatabase.GetCollection("GroupM");
+            StudentsCollection = MongoDatabase.GetCollection("StudentM");
+
+            ComboDBSettings.connectionStringMongo = "server=localhost;database=MyDBTest";
+
+            studentRepository = new StudentMongoRepository();
+
+        }
+
         [Test]
         public void GetAllStudentsTest()
         {
             // Arrange
-            StudentMongoRepository StudentRepository;
-            StudentRepository = new StudentMongoRepository();
+            
             //Act
-            int countStudents = StudentRepository.GetAllStudents().Count();
+            int countStudents = studentRepository.GetAllStudents().Count();
             //Assert
-            Assert.AreEqual(StudentRepository.StudentsCollection.Count(), countStudents);
+            Assert.AreEqual(StudentsCollection.Count(), countStudents);
 
-        }
+        }  
 
         [Test]
         public void AddTest()
         {
             // Arrange
-            StudentMongoRepository StudentRepository;
-            StudentRepository = new StudentMongoRepository();
-            int countBefore = StudentRepository.GetAllStudents().Count();
+            
+            int countBefore = studentRepository.GetAllStudents().Count();
             StudentModel gm = new StudentModel();
             gm.FirstName = "Jack";
             gm.LastName = "Robbinson";
             //Act
-            StudentRepository.Add(gm);
+            studentRepository.Add(gm);
             //Assert
-            Assert.AreEqual(countBefore + 1, StudentRepository.GetAllStudents().Count());
+            Assert.AreEqual(countBefore + 1, StudentsCollection.Count());
 
         }
 
@@ -47,18 +75,13 @@ namespace NUnitTests.Repositories
         public void DeleteTest()
         {
             // Arrange
-            StudentMongoRepository StudentRepository;
-            StudentRepository = new StudentMongoRepository();
-            StudentModel gm = new StudentModel();
-            gm.FirstName = "Jack";
-            gm.LastName = "Robbinson";
-            gm.Id = Guid.NewGuid().ToString();
-            StudentRepository.Add(gm);
-            int countBefore = StudentRepository.GetAllStudents().Count();
+            var Students = StudentsCollection.FindAllAs<StudentModel>();
+
+            string id_to_delete = Students.Last().Id;
             //Act
-            StudentRepository.Delete(gm.Id);
+            studentRepository.Delete(id_to_delete);
             //Assert
-            Assert.AreEqual(countBefore - 1, StudentRepository.GetAllStudents().Count());
+            Assert.IsNull((StudentModel)StudentsCollection.FindOneAs(typeof(GroupModel), Query.EQ("_id", id_to_delete)));
 
         }
 
@@ -66,18 +89,14 @@ namespace NUnitTests.Repositories
         public void GetStudentByIdTest()
         {
             // Arrange
-            StudentMongoRepository StudentRepository;
-            StudentRepository = new StudentMongoRepository();
-            StudentModel gm = new StudentModel();
-            gm.FirstName = "Jack";
-            gm.LastName = "Robbinson";
-            gm.Id = Guid.NewGuid().ToString();
-            StudentRepository.Add(gm);
-            //Act
-            StudentModel gmTest = StudentRepository.GetStudentById(gm.Id);
-            //Assert
-            Assert.AreEqual(gm.Id, gmTest.Id);
+            var Students = StudentsCollection.FindAllAs<StudentModel>();
 
-        }
-    }*/
+            StudentModel gmTest = Students.Last();
+            //Act
+            StudentModel gmFounded = studentRepository.GetStudentById(gmTest.Id);
+            //Assert
+            Assert.AreEqual(gmTest.LastName, gmFounded.LastName);
+
+       } 
+    }
 }

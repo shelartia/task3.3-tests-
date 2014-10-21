@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NUnitTests.Repositories
 {
-
+    /*
     [TestFixture]
     class IStudentsRepositoryTest
     {
@@ -48,7 +48,6 @@ namespace NUnitTests.Repositories
         {
             // Arrange:Setup mock behavior for the GetAll() method in our repository
             StudentModel expectedStudent = mockStudentModels[0];
-            Console.WriteLine("expected Id: " + expectedStudent.Id);
             mockStudentRepository.Setup(x => x.GetStudentById("0")).Returns(mockStudentModels[0]);
             //Act
             StudentModel actualStudent = mockStudentRepository.Object.GetStudentById("0");
@@ -86,5 +85,5 @@ namespace NUnitTests.Repositories
             Assert.AreEqual(mockStudentModels.Count(), mockStudentRepository.Object.GetAllStudents().Count());
 
         }
-    }
+    }*/
 }

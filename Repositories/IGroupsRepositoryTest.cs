@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace NUnitTests.Repositories
 {
+    /*
     [TestFixture]
     class IGroupsRepositoryTest
     {
@@ -80,5 +81,5 @@ namespace NUnitTests.Repositories
             Assert.AreEqual(mockGroupModels.Count(), mockGroupRepository.Object.GetAllGroups().Count());
 
         }
-    }
+    }*/
 }
